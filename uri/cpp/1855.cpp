@@ -34,44 +34,82 @@ int main()
 char dfs(int lin, int col, int direcao)
 {
     if (flag[lin][col] == 1)
-        return '!';
-
-    if(mapa[lin][col]=='.')
     {
-        
+        return '!';
     }
+
+    if (mapa[lin][col] == '.')
+    {
+        switch (direcao)
+        {
+        case 1:
+            if (col > 0)
+            {
+                return dfs(lin, col - 1, 1);
+            }
+            return '!';
+            break;
+        case 2:
+            if (lin - 1 > l)
+            {
+                return '!';
+            }
+            return dfs(lin + 1, col, 2);
+            break;
+        case 3:
+            if (col - 1 > c)
+            {
+                return '!';
+            }
+            return dfs(lin, col + 1, 3);
+            break;
+        case 4:
+            if (lin > 0)
+            {
+                return dfs(lin - 1, col, 4);
+            }
+            return '!';
+            break;
+        }
+    }
+
+    flag[lin][col] = 1;
 
     if (mapa[lin][col] == '^')
     {
-        if (lin > 0)
+        if (col > 0)
         {
-            return dfs(lin - 1, col, 1);
+            return dfs(lin, col - 1, 1);
         }
         return '!';
     }
-    else if (mapa[lin][col] == '>')
-    {
-        if (col - 1 > c)
-        {
-            return '!';
-        }
-        return dfs(lin, col + 1, 2);
-    }
-    else if (mapa[lin][col] == 'v')
+
+    if (mapa[lin][col] == '>')
     {
         if (lin - 1 > l)
         {
             return '!';
         }
-        return dfs(lin - 1, col, 3);
+        return dfs(lin + 1, col, 2);
     }
-    else
+
+    if (mapa[lin][col] == 'v')
     {
-        if (col > 0)
+        if (col - 1 > c)
         {
-            return dfs(lin, col + 1, 2);
+            return '!';
+        }
+        return dfs(lin, col + 1, 3);
+    }
+
+    if (mapa[lin][col] == '<')
+    {
+        if (lin > 0)
+        {
+            return dfs(lin - 1, col, 4);
         }
         return '!';
     }
+
     return '*';
 }
