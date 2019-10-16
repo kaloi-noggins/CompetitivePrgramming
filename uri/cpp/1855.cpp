@@ -16,7 +16,7 @@ int main()
         for (size_t j = 0; j < l; j++)
         {
             cin >> mapa[i][j];
-        }
+        }   
     }
 
     for (size_t i = 0; i < l; i++)
