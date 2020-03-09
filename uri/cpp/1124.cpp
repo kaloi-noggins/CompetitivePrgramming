@@ -15,14 +15,17 @@ int main()
         }
         else
         {
-            double sum, hip;
-            sum = 2 * r1 + 2 * r2;
-            hip = (int)sqrt(pow(l, 2) + pow(c, 2));
-            // cout << l << " " << c << " " << r1 << " " << r2 << " " << endl
-            //      << hip << " " << sum << endl;
-            if ((sum < l || sum < c || sum < hip) && (r1 <= l && r1 <= c && r2 <= l && r2 <= c))
+            if (r1 * 2 <= l && r1 * 2 <= c && r2 * 2 <= l && r2 * 2 <= c)
             {
-                cout << 'S' << endl;
+
+                if (pow(l - r1 - r2, 2) + pow(c - r1 - r2, 2) >= pow(r1 + r2, 2))
+                {
+                    cout << 'S' << endl;
+                }
+                else
+                {
+                    cout << 'N' << endl;
+                }
             }
             else
             {

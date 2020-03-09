@@ -4,52 +4,25 @@ using namespace std;
 
 int main()
 {
-    int h0, m0, h1, m1, t;
+    int h0, m0, h1, m1, t0, t1, delta;
     cin >> h0 >> m0 >> h1 >> m1;
 
-    if (h0 < h1)
-    {
-        t = (h1 - h0) * 60;
-    }
-    else
-    {
-        t = (24 - h0 + h1) * 60;
-    }
+    t0 = h0 * 60 + m0;
+    t1 = h1 * 60 + m1;
 
-    if (m0 < m1)
-    {
-        t += m1 - m0;
-    }
-    else
-    {
-        t += 60 - m0 + m1;
-    }
+    delta = t1 - t0;
 
-    if (m0 > m1 || m0 == m1)
-    {
-        t -= 60;
-    }
+    cout << t0 << " " << t1 << " " << delta << endl;
 
-    if (h0 > h1 || h0 == h1)
+    if (delta <= 0)
     {
-        t -= 60 * 24;
+        delta += 1440;
     }
+    
+    cout << delta << endl;
+    int horas = (delta - delta % 60) / 60;
+    int minutos = (delta - delta % 24) / 24;
+    cout << horas << " "  << minutos << endl;
 
-    if (h0 == h1 && m0 == m1)
-    {
-        t += 60 * 24;
-    }
-
-    if (t < 0)
-    {
-        t *= -1;
-    }
-    cout
-        << "O JOGO DUROU "
-        << (t - t % 60) / 60
-        << " HORA(S) E "
-        << t % 60
-        << " MINUTO(S)"
-        << endl;
     return 0;
 }
